@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }} </h1>
+    <h1>{{ msg }} {{direction}}</h1>
     <h2>Essential Links</h2>
     <router-link to="/child">Go to Child</router-link>
   </div>
@@ -14,6 +14,9 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  mounted() {
+    console.log(this.$store)
   },
   computed: {
     ...mapState([
