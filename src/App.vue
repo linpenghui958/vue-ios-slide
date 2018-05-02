@@ -13,8 +13,8 @@ export default {
   name: 'App',
   computed: {
     transitionClass () {
-      if (!this.getDirection) return ''
-      return 'slide-' + (this.getDirection === 'forward' ? 'in' : 'out')
+      if (!this.direction) return ''
+      return 'slide-' + (this.direction === 'forward' ? 'in' : 'out')
     },
     getDirection() {
       return store.state.direction
@@ -47,6 +47,17 @@ export default {
 .slide-in-leave-to
 {
   transform: translate3d(100%, 0, 0);
+}
+
+.slide-out-enter-active, .slide-out-leave-active {
+  transition: all 0.3s;
+}
+
+/* // ORIGIN: add slide transition effect */
+.slide-out-enter,
+.slide-out-leave-to
+{
+  transform: translate3d(-100%, 0, 0);
 }
 
 </style>
