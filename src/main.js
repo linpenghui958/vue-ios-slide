@@ -4,6 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+import vconsole from 'vconsole'
+var vConsole = new vconsole();
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
