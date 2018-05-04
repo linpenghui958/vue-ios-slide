@@ -1,9 +1,7 @@
 <template>
 
     <div class="container">
-      <span class="text" @click="back">Click Back</span>
-
-      <router-link to="/child2">Go to Child</router-link>
+      <span class="text" @click="back">Click Back(child 2)</span>
     </div>
 </template>
 
@@ -24,7 +22,7 @@ export default {
   width: 100%;
   align-items: center;
   justify-content: center;
-  background-color: bisque;
+  background-color: darkgray;
 }
 .text{
   font-size: 30px;
