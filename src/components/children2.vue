@@ -1,11 +1,11 @@
 <template>
-  <transition name="slide">
+  <!-- <transition name="slide"> -->
     <!-- <div class="container">
       <span class="text" @click="back">Click Back(child 2)</span>
       
     </div> -->
     <div>1231</div>
-  </transition>
+  <!-- </transition> -->
 </template>
 
 <script>

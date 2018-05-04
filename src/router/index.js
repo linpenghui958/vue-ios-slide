@@ -68,62 +68,62 @@ const router = new Router({
 // })
 
 
-// const history = window.sessionStorage
-// history.clear()
-// let historyCount = history.getItem('count') * 1 || 0
-// history.setItem('/', 0)
-// let isPush = false
-// let endTime = Date.now()
-// let methods = ['push', 'go', 'replace', 'forward', 'back']
+const history = window.sessionStorage
+history.clear()
+let historyCount = history.getItem('count') * 1 || 0
+history.setItem('/', 0)
+let isPush = false
+let endTime = Date.now()
+let methods = ['push', 'go', 'replace', 'forward', 'back']
 
-// document.addEventListener('touchend', () => {
-//   endTime = Date.now()
-// })
-// methods.forEach(key => {
-//   let method = router[key].bind(router)
-//   router[key] = function (...args) {
-//     isPush = true
-//     method.apply(null, args)
-//   }
-// })
+document.addEventListener('touchend', () => {
+  endTime = Date.now()
+})
+methods.forEach(key => {
+  let method = router[key].bind(router)
+  router[key] = function (...args) {
+    isPush = true
+    method.apply(null, args)
+  }
+})
 
-// router.beforeEach(function (to, from, next) {
+router.beforeEach(function (to, from, next) {
 
-//   const toIndex = history.getItem(to.path)
-//   const fromIndex = history.getItem(from.path)
-//   console.log(`toindex-${toIndex},fromindex-${fromIndex}`)
-//   if (toIndex) {
-//     if (!fromIndex || parseInt(toIndex, 10) > parseInt(fromIndex, 10) || (toIndex === '0' && fromIndex === '0')) {
-//       store.commit('UPDATE_DIRECTION', 'forward')
-//     } else {
-//       // 判断是否是ios左滑返回
-//       if (!isPush && (Date.now() - endTime) < 377) {
-//         store.commit('UPDATE_DIRECTION', '')
-//       } else {
-//         store.commit('UPDATE_DIRECTION', 'reverse' )
-//       }
-//     }
-//   } else {
-//     ++historyCount
-//     history.setItem('count', historyCount)
-//     to.path !== '/' && history.setItem(to.path, historyCount)
-//     store.commit('UPDATE_DIRECTION', 'forward')
-//   }
+  const toIndex = history.getItem(to.path)
+  const fromIndex = history.getItem(from.path)
+  console.log(`toindex-${toIndex},fromindex-${fromIndex}`)
+  if (toIndex) {
+    if (!fromIndex || parseInt(toIndex, 10) > parseInt(fromIndex, 10) || (toIndex === '0' && fromIndex === '0')) {
+      store.commit('UPDATE_DIRECTION', 'forward')
+    } else {
+      // 判断是否是ios左滑返回
+      if (!isPush && (Date.now() - endTime) < 377) {
+        store.commit('UPDATE_DIRECTION', '')
+      } else {
+        store.commit('UPDATE_DIRECTION', 'reverse' )
+      }
+    }
+  } else {
+    ++historyCount
+    history.setItem('count', historyCount)
+    to.path !== '/' && history.setItem(to.path, historyCount)
+    store.commit('UPDATE_DIRECTION', 'forward')
+  }
 
-//   if (/\/http/.test(to.path)) {
-//     let url = to.path.split('http')[1]
-//     window.location.href = `http${url}`
-//   } else {
-//     next()
-//   }
-// })
+  if (/\/http/.test(to.path)) {
+    let url = to.path.split('http')[1]
+    window.location.href = `http${url}`
+  } else {
+    next()
+  }
+})
 
-// router.afterEach(function (to) {
-//   isPush = false
-//   if (process.env.NODE_ENV === 'production') {
-//     ga && ga('set', 'page', to.fullPath)
-//     ga && ga('send', 'pageview')
-//   }
-// })
+router.afterEach(function (to) {
+  isPush = false
+  if (process.env.NODE_ENV === 'production') {
+    ga && ga('set', 'page', to.fullPath)
+    ga && ga('send', 'pageview')
+  }
+})
 
 export default router

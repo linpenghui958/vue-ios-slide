@@ -1,5 +1,5 @@
 <template>
-  <transition name="slide">
+  <!-- <transition name="slide"> -->
     <div class="container">
       <span class="text" @click="back">Click Back</span>
       
@@ -7,7 +7,7 @@
       <router-view/>
       <!-- <router-link to="/child2">Go to Child</router-link> -->
     </div>
-  </transition>
+  <!-- </transition> -->
 </template>
 
 <script>

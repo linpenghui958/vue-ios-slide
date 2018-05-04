@@ -1,11 +1,11 @@
 <template>
-  <transition name="slide-out" mode="out-in">
+  <!-- <transition name="slide-out" mode="out-in"> -->
     <div class="hello">
       <h1>{{ msg }} {{direction}}</h1>
       <h2>Essential Links</h2>
       <router-link to="/child">Go to Child</router-link>
     </div>
-  </transition>
+  <!-- </transition> -->
 </template>
 
 <script>

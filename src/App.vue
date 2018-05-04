@@ -1,8 +1,8 @@
 <template>
   <div id="app" :clas="transitionClass">
-    <!-- <transition :name="transitionClass"> -->
+    <transition :name="transitionClass">
       <router-view/>
-    <!-- </transition> -->
+    </transition>
   </div>
 </template>
 
@@ -72,15 +72,18 @@ export default {
     }
   },
   computed: {
-    // transitionClass() {
-    //   if (!this.direction) return "";
-    //   return "slide-" + (this.direction === "forward" ? "in" : "out");
-    // }
     transitionClass() {
-      if (this.vm.isLeft || this.vm.isRight) return "";
-      // return "slide-" + (this.direction === "forward" ? "in" : "out");
-      return "slide-out"
-    }
+      if (!this.direction) return "";
+      return "slide-" + (this.direction === "forward" ? "in" : "out");
+    },
+    // transitionClass() {
+    //   if (this.vm.isLeft || this.vm.isRight) return "";
+    //   // return "slide-" + (this.direction === "forward" ? "in" : "out");
+    //   return "slide-out"
+    // }
+    ...mapState([
+        'direction'
+    ]),
   }
 };
 </script>
